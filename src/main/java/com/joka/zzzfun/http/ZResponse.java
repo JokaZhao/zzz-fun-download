@@ -6,12 +6,11 @@ import com.joka.zzzfun.constant.HttpConstatns;
 import com.joka.zzzfun.data.StringMap;
 import okhttp3.MediaType;
 import okhttp3.Response;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.Map;
 
-public final class ZResponse {
+public final class ZResponse<T> {
 
     public static final int InvalidArgument = -4;
     public static final int InvalidFile = -3;
@@ -66,7 +65,7 @@ public final class ZResponse {
     }
 
     public boolean isJson() {
-        return contentType().equals(HttpClient.JsonMine);
+        return contentType().equals(OkClient.JsonMine);
     }
 
     public String contentType(){

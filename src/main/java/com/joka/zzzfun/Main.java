@@ -1,8 +1,11 @@
 package com.joka.zzzfun;
 
+import com.joka.zzzfun.data.StringMap;
 import com.joka.zzzfun.http.HttpClient;
-import com.joka.zzzfun.http.ZResponse;
-import okhttp3.*;
+import com.joka.zzzfun.http.OkClient;
+import okhttp3.Request;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
@@ -10,32 +13,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        OkHttpClient client = new OkHttpClient();
+//        try {
+//            Document document = Jsoup.connect("http://www.zzzfun.com/").get();
+//            System.out.println(document.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-//        Request request = new Request.Builder().url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/bdorz/baidu.min.css").get().build();
-//        Call call = client.newCall(request);
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                System.out.println("Fail :"+e.getMessage());
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                System.out.println("onResponse :"+response.body().string());
-//            }
-//        });
+        OkClient client = HttpClient.getHttpClient();
 
-        String url = "https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/bdorz/baidu.min.css";
-        HttpClient client1 = new HttpClient();
-        ZResponse zResponse = client1.get(url);
-
-        System.out.println(zResponse.isOK());
-        System.out.println(zResponse.toString());
-        System.out.println(zResponse.url());
-        System.out.println(zResponse.bodyString());
-
-
+        Request.Builder builder = new Request.Builder().url("http://cachefly.cachefly.net/100mb.test")
+                .get();
+        client.donwloanFile(builder,new StringMap());
 
     }
 
