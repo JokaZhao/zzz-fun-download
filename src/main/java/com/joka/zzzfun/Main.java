@@ -22,8 +22,7 @@ public class Main {
 
         OkClient client = HttpClient.getHttpClient();
 
-        Request.Builder builder = new Request.Builder().url("http://cachefly.cachefly.net/100mb.test")
-                .get();
+        Request.Builder builder = new Request.Builder().url("http://speedtest.tokyo.linode.com/100MB-tokyo.bin").get();
         client.donwloanFile(builder,new StringMap());
 
     }

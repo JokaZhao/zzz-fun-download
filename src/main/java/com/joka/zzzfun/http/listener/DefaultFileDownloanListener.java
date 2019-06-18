@@ -15,7 +15,10 @@ public class DefaultFileDownloanListener implements OnDownloadListen {
 
     @Override
     public void onDownloading(int progress) {
-        System.out.println("下载进度：" + progress);
+        if (progress > this.process){
+            this.process = progress;
+            System.out.println("下载进度：" + progress);
+        }
     }
 
     @Override
