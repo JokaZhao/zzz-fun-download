@@ -28,7 +28,7 @@ public class TestFileDownWithIO {
     public void downloadFileWithIO(){
         Request.Builder builder = new Request.Builder().url("http://down.kuwo.cn/mbox/kuwo_yy8844.exe").get();
         okClient.donwloanFile(builder, new StringMap());
-        Assert.
+
 
 
     }
