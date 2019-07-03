@@ -6,8 +6,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,20 +37,27 @@ public class FileDownloadCallBack implements Callback {
         OutputStream out = null;
         try {
             input = response.body().byteStream();
-
+//            input = response.body().source().inputStream();
             long totalContentLength = response.body().contentLength();
 
             File file = new File(savePath +File.separator+ getNameFromUrl(response.request().url().toString()));
 
             out = FileUtils.openOutputStream(file);
 
-            byte[] buf = new byte[4096];
+            byte[] buf = new byte[8192];
 
-            int n;
-            for (long count = 0L; -1 != (n = input.read(buf)); count += (long)n) {
-                IOUtils.write(buf,out);
-                int progress = (int) (count * 1.0f / totalContentLength * 100);
+            int count = 0;
+            int total = 0;
+
+            while ( (count = input.read(buf)) != -1) {
+                out.write(buf, 0, count);
+
+                total += count;
+
+                int progress = (int) (total * 1.0f / totalContentLength * 100);
+
                 listen.onDownloading(progress);
+
             }
 
             out.flush();

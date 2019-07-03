@@ -4,10 +4,6 @@ import com.joka.zzzfun.data.StringMap;
 import com.joka.zzzfun.http.HttpClient;
 import com.joka.zzzfun.http.OkClient;
 import okhttp3.Request;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.IOException;
 
 public class Main {
 
@@ -22,8 +18,10 @@ public class Main {
 
         OkClient client = HttpClient.getHttpClient();
 
-        Request.Builder builder = new Request.Builder().url("http://speedtest.tokyo.linode.com/100MB-tokyo.bin").get();
-        client.donwloanFile(builder,new StringMap());
+//        Request.Builder builder = new Request.Builder().url("http://speedtest.tokyo.linode.com/100MB-tokyo.bin").get();
+//        Request.Builder builder = new Request.Builder().url("http://ting666.yymp3.com:86/new27/chenrui9/1.mp3").get();
+        Request.Builder builder = new Request.Builder().url("http://down.kuwo.cn/mbox/kuwo_yy8844.exe").get();
+        client.donwloanFile(builder, new StringMap());
 
     }
 
